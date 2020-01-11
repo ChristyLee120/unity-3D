@@ -1,0 +1,36 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// Warp or teleport is used by the user
+// The user can teleport to a different place in the game by using the warp
+
+public class Warp : MonoBehaviour {
+
+	public GameObject target;
+	private bool isActive;
+	private Warp targetScript; //access itself in another object
+
+	// Use this for initialization
+	void Start () {
+		isActive = false;
+		targetScript = target.gameObject.GetComponent<Warp> (); //this script can change the other script
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (other.gameObject.name == "Player") {
+			if (!isActive) {
+				isActive = true;
+				targetScript.isActive = true;
+				other.gameObject.transform.position = target.gameObject.transform.position; //sets the player's position to the position of the target
+			}
+		}
+	}
+	private void OnTriggerExit(Collider other) {
+		if (other.gameObject.name == "Player") {
+			if (isActive)
+				isActive = false;
+			
+		}
+	}
+}
