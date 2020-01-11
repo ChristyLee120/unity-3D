@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// Switch is used to activate other objects to move
+// for instance, a switch must be touched to open a door
+
+public class Switch : MonoBehaviour {
+
+	public GameObject target;
+	private Vector3 targetStartPosition;
+	private Vector3 targetEndPosition;
+	public float distance = 5.0f;
+	public float duration = 10.0f;
+	public Material onColour;
+	private Material offColour;
+	private bool switchOn;
+
+	// Use this for initialization
+	void Start () {
+		targetStartPosition = target.transform.position;
+		targetEndPosition = target.transform.position + new Vector3 (0.0f, distance, 0.0f);
+		offColour = this.GetComponent<Renderer> ().material;
+		switchOn = false;
+	}
+
+	// Update is called once per frame
+	void Update () {
+		if (switchOn && target.transform.position != targetEndPosition) {
+			target.transform.position += (targetEndPosition - target.transform.position) / duration;
+		}
+		if (!switchOn && target.transform.position != targetStartPosition) {
+			target.transform.position += (targetStartPosition - target.transform.position) / duration;
+		}
+	}
+
+	private void OnTriggerEnter(Collider other) {
+		Debug.Log ("something entered");
+		if (other.gameObject.name == "Player") { //only player can activate the switch
+			if (!switchOn) {
+				switchOn = true;
+				this.GetComponent<Renderer> ().material = onColour;
+			} else {
+				switchOn = false;
+				this.GetComponent<Renderer> ().material = offColour;
+			}
+		}
+	}
+}
