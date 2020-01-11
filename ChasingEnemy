@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ChasingEnemy : MonoBehaviour {
+
+    private GameObject target;
+    public float movementSpeed = 4;
+
+	// Use this for initialization
+	void Start () {
+        target = GameObject.Find("Player").gameObject;
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        transform.LookAt(target.transform); //takes the current obj and figures out the target's (player) location
+        transform.position += transform.forward * movementSpeed * Time.deltaTime; //moves forward towards the target
+	}
+}
+ 
