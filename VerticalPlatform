@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+// Vertical platforms act as elevators
+
+public class VerticalPlatform : MonoBehaviour {
+
+	public float speed = 1; //by default change to 1
+	public float range = 1;
+
+	private Vector3 _startPosition;
+
+	// Use this for initialization
+	void Start () {
+		_startPosition = transform.position;
+	}
+
+	// Update is called once per frame
+	void Update () {
+		transform.position = _startPosition + new Vector3 (0.0f, Mathf.Sin(Time.time * speed) * range, 0.0f);
+	}
+}
