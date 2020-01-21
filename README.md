@@ -19,3 +19,11 @@ Red/Moving Enemy - Enemy
 Yellow Capsules - Items
 Pink - a switch to open/close a different object
 Purple - teleport
+
+Video clips of each level:
+Level 1:
+> https://youtu.be/XGwsakONq8I 
+Level 2
+> https://youtu.be/xq2FaLKgUpI 
+Level 3
+> https://youtu.be/pnWG6AZ1wDI 
